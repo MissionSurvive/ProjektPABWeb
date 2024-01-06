@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cda7e34cf466416ea545f70a03015174" Name="Diagram1">
+        <EntityTypeShape EntityType="CarRentalCWModel.HISTORIA_ZAMOWIENIA" Width="1.5" PointX="8.25" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarRentalCWModel.KLIENCI" Width="1.5" PointX="8.25" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarRentalCWModel.KONTA_KLIENTOW" Width="1.5" PointX="6" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarRentalCWModel.KONTA_PRACOWNIKOW" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarRentalCWModel.MARKI" Width="1.5" PointX="1.5" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarRentalCWModel.MODELE" Width="1.5" PointX="3.75" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarRentalCWModel.PAKIETY" Width="1.5" PointX="8.25" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarRentalCWModel.PRACOWNICY" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarRentalCWModel.RODZAJE_NADWOZIA" Width="1.5" PointX="1.5" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarRentalCWModel.RODZAJE_PALIWA" Width="1.5" PointX="3.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarRentalCWModel.ROLE" Width="1.5" PointX="3" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarRentalCWModel.SAMOCHODY" Width="1.5" PointX="6" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarRentalCWModel.WYPOZYCZALNIE" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarRentalCWModel.ZAMOWIENIA" Width="1.5" PointX="10.5" PointY="5.875" IsExpanded="true" />
+        <AssociationConnector Association="CarRentalCWModel.FK_HISTORIA_HISTORIA__ZAMOWIEN" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRentalCWModel.FK_HISTORIA_KLIENT_PO_KLIENCI" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRentalCWModel.FK_HISTORIA_PRACOWNIK_PRACOWNI" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRentalCWModel.FK_ZAMOWIEN_HISTORIA__HISTORIA" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRentalCWModel.FK_KLIENCI_KONTO_KLI_KONTA_KL" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRentalCWModel.FK_KONTA_KL_KONTO_KLI_KLIENCI" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRentalCWModel.FK_ZAMOWIEN_ZAMOWIENI_KLIENCI" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRentalCWModel.FK_KONTA_KL_ROLE_KLIE_ROLE" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRentalCWModel.FK_KONTA_PR_KONTO_PRA_PRACOWNI" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRentalCWModel.FK_KONTA_PR_ROLE_PRAC_ROLE" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRentalCWModel.FK_PRACOWNI_KONTO_PRA_KONTA_PR" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRentalCWModel.FK_MODELE_MARKA_SAM_MARKI" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRentalCWModel.FK_MODELE_RODZAJ_NA_RODZAJE_" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRentalCWModel.FK_SAMOCHOD_MODEL_SAM_MODELE" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRentalCWModel.FK_ZAMOWIEN_PAKIET_W__PAKIETY" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRentalCWModel.FK_PRACOWNI_PRACOWNIK_WYPOZYCZ" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRentalCWModel.FK_SAMOCHOD_RODZAJ_PA_RODZAJE_" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRentalCWModel.FK_SAMOCHOD_SAMOCHOD__WYPOZYCZ" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRentalCWModel.FK_ZAMOWIEN_ZAMOWIONY_SAMOCHOD" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRentalCWModel.FK_ZAMOWIEN_WYPOZYCZA_WYPOZYCZ" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
