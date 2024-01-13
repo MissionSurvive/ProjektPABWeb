@@ -12,16 +12,15 @@ namespace CarRentalWeb
     using System;
     using System.Collections.Generic;
     
-    public partial class RODZAJE_NADWOZIA
+    public partial class HISTORIA_ZDARZEN
     {
-        public RODZAJE_NADWOZIA()
-        {
-            this.MODELE = new HashSet<MODELE>();
-        }
+        public decimal ID_HISTORIA { get; set; }
+        public decimal ID_ZAMOWIENIE { get; set; }
+        public decimal ID_RODZAJ_ZDARZENIE { get; set; }
+        public decimal OPLATA { get; set; }
+        public System.DateTime DATA_ZDARZENIE { get; set; }
     
-        public decimal ID_NADWOZIE { get; set; }
-        public string NAZWA_NADWOZIE { get; set; }
-    
-        public virtual ICollection<MODELE> MODELE { get; set; }
+        public virtual RODZAJE_ZDARZEN RODZAJE_ZDARZEN { get; set; }
+        public virtual ZAMOWIENIA ZAMOWIENIA { get; set; }
     }
 }

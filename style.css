@@ -1,0 +1,67 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Style the navigation bar */
+.navbar {
+    overflow: hidden;
+    background-color: #04AA6D;
+    position: fixed;
+    top: 0;
+    width: 15%;
+    height: 100%;
+    text-align: center;
+}
+
+/* Style the buttons inside the navigation bar */
+.button {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+    background-color: #04AA6D;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+    /* Change the color of buttons on hover */
+    .button:hover {
+        background-color: #026b45;
+        color: white;
+    }
+
+/* Style the buttons inside the navigation bar */
+.logout {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+    background-color: #eb4034;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+    /* Change the color of buttons on hover */
+    .logout:hover {
+        background-color: #9e2b23;
+        color: white;
+    }
+
+/* Style the page content */
+.content {
+    margin-left: 20%;
+    padding: 1px 16px;
+    height: 1000px; /* Used to enable scrolling */
+}
+
+.user {
+    color: white;
+}
