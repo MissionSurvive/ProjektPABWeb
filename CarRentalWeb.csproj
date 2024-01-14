@@ -80,6 +80,7 @@
     <Content Include="ClientOrders.aspx" />
     <Content Include="ClientRent.aspx" />
     <Content Include="ClientView.aspx" />
+    <Content Include="EmployeeHistory.aspx" />
     <Content Include="EmployeeView.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Model1.Context.tt">
@@ -117,6 +118,13 @@
     </Compile>
     <Compile Include="ClientView.aspx.designer.cs">
       <DependentUpon>ClientView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeHistory.aspx.cs">
+      <DependentUpon>EmployeeHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmployeeHistory.aspx.designer.cs">
+      <DependentUpon>EmployeeHistory.aspx</DependentUpon>
     </Compile>
     <Compile Include="EmployeeView.aspx.cs">
       <DependentUpon>EmployeeView.aspx</DependentUpon>

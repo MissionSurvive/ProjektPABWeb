@@ -14,8 +14,6 @@ namespace CarRentalWeb
     {
         ZAMOWIENIA model = new ZAMOWIENIA();
         HISTORIA_ZDARZEN model2 = new HISTORIA_ZDARZEN();
-        string packet = "";
-        string id = "";
         int packetId;
         int carId;
         int rentalId;
@@ -25,6 +23,9 @@ namespace CarRentalWeb
         int clientId;
         int idInt;
         int nextId;
+        int diff;
+        decimal weekPrice;
+        decimal monthPrice;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -119,6 +120,16 @@ namespace CarRentalWeb
             string car = row.Cells[18].Text;
             carId = Convert.ToInt32(row.Cells[18].Text);
             rentalId = Convert.ToInt32(row.Cells[19].Text);
+            weekPrice = Convert.ToDecimal(row.Cells[15].Text);
+            monthPrice = Convert.ToDecimal(row.Cells[16].Text);
+            if(weekPrice == 0)
+            {
+                WeekRadio.Visible = false;
+            }
+            if(monthPrice == 0)
+            {
+                MonthRadio.Visible = false;
+            }
             if (DayRadio.Checked)
             {
                 sumDays();
@@ -173,7 +184,15 @@ namespace CarRentalWeb
                 packetId = Convert.ToInt32(row2.Cells[1].Text);
                 packetPrice = Convert.ToDecimal(row2.Cells[4].Text);
                 clientId = Login.userID;
-                if (packetPrice == -1)
+                if (WeekRadio.Checked && weekPrice == 0)
+                {
+                    Label5.Text = "Nie można wypożyczyć wego pojazdu na tygodnie!";
+                }
+                else if (MonthRadio.Checked && monthPrice == 0)
+                {
+                    Label5.Text = "Nie można wypożyczyć wego pojazdu na miesiące!";
+                }
+                else if (packetPrice == -1)
                 {
                     Label5.Text = "Nie wybrano pakietu!";
                 }
@@ -207,7 +226,7 @@ namespace CarRentalWeb
                         }
                         string startString = startDate.ToString("yyyy-MM-dd HH:mm:ss");
                         string endString = endDate.ToString("yyyy-MM-dd HH:mm:ss");
-                        int diff = (endDate - startDate).Days;
+                        diff = (endDate - startDate).Days;
 
                         SqlConnection connection2 = new SqlConnection(@"Data Source = X280\SQLEXPRESS; Initial Catalog = CarRentalCWBack; Integrated Security = True");
                         var command2 = ("SELECT * FROM ZAMOWIENIA WHERE ID_SAMOCHOD = " + carId + " AND DATA_START BETWEEN '" + startString + "' AND '" + endString + "' OR ID_SAMOCHOD = " + carId + " AND DATA_KONIEC BETWEEN '" + startString + "' AND '" + endString + "'");
@@ -263,6 +282,13 @@ namespace CarRentalWeb
             {
                 Response.Write(ex.ToString());
             }
+        }
+
+        protected void logoutButton_Click(object sender, EventArgs e)
+        {
+            Login.name = null;
+            Login.surname = null;
+            Response.Redirect("Login.aspx");
         }
     }
 }

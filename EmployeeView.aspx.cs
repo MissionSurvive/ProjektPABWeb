@@ -13,6 +13,7 @@ namespace CarRentalWeb
         {
             Label1.Text = Login.name + " " + Login.surname;
             Label2.Text = Login.userRoleLogged;
+            Label3.Text = Login.userID.ToString();
         }
 
         protected void logoutButton_Click(object sender, EventArgs e)
@@ -21,6 +22,11 @@ namespace CarRentalWeb
             Login.surname = null;
             Login.userRoleLogged = null;
             Response.Redirect("Login.aspx");
+        }
+
+        protected void historyButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("EmployeeHistory.aspx");
         }
     }
 }

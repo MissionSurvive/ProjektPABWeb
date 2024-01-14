@@ -42,7 +42,7 @@
         <div class="navbar">
     <asp:Button class="button" ID="rentButton" runat="server" Text="Wypożycz samochód" OnClick="rentButton_Click" /> 
     <asp:Button class="button" ID="ordersButton" runat="server" Text="Moje zamówienia" OnClick="ordersButton_Click" />
-    <asp:Button class="logout" ID="logoutButton" runat="server" Text="Wyloguj" />
+    <asp:Button class="logout" ID="logoutButton" runat="server" Text="Wyloguj" OnClick="logoutButton_Click" />
     <br>
     <asp:Label class="user" ID="infoLabel" runat="server" Text="Zalogowany jako:"></asp:Label>
     <br><br>
