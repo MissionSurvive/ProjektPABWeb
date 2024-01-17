@@ -119,11 +119,6 @@
             <asp:ControlParameter ControlID="Label19" Name="ID_WYPOZYCZALNIA" PropertyName="Text" />
         </SelectParameters>
     </asp:SqlDataSource>
-    <h1>Filtry</h1>
-    <asp:Label class="label" ID="Label4" runat="server" Text="Marka"></asp:Label>
-    <br />
-    <asp:DropDownList class="textbox" ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="NAZWA_MARKA" DataValueField="ID_MODEL"></asp:DropDownList>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:CarRentalCWBackConnectionString %>" SelectCommand="SELECT DISTINCT MODELE.ID_MODEL, MARKI.NAZWA_MARKA FROM MARKI INNER JOIN MODELE ON MARKI.ID_MARKA = MODELE.ID_MARKA INNER JOIN SAMOCHODY ON MODELE.ID_MODEL = SAMOCHODY.ID_MODEL"></asp:SqlDataSource>
     <h1>Dodaj/modyfikuj/usuń samochód</h1>
      <asp:Label class="label" ID="Label5" runat="server" Text="Paliwo"></asp:Label>
  <br />

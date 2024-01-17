@@ -63,24 +63,6 @@ namespace CarRentalWeb
             Response.Redirect("Login.aspx");
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-            GridView1.DataSource = null;
-            GridView1.DataSourceID = null;
-            GridView1.DataSource = SqlDataSource2;
-            GridView1.DataSourceID = "SqlDataSource2";
-            GridView1.DataBind();
-        }
-
-        protected void Button5_Click(object sender, EventArgs e)
-        {
-            GridView1.DataSource = null;
-            GridView1.DataSourceID = null;
-            GridView1.DataSource = SqlDataSource1;
-            GridView1.DataSourceID = "SqlDataSource2";
-            GridView1.DataBind();
-        }
-
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             GridViewRow row = GridView1.SelectedRow;

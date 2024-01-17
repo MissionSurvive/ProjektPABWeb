@@ -119,20 +119,6 @@
             <asp:Parameter Name="ID_KLIENT" Type="Decimal" />
         </UpdateParameters>
     </asp:SqlDataSource>
-    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:CarRentalCWBackConnectionString %>" SelectCommand="SELECT [ID_KLIENT], [IMIE_KLIENT], [NAZWISKO_KLIENT], [PESEL_KLIENT], [TELEFON_KLIENT], [FAX], [NIP] FROM [KLIENCI] WHERE ([NAZWISKO_KLIENT] LIKE '%' + @NAZWISKO_KLIENT + '%')">
-        <SelectParameters>
-            <asp:ControlParameter ControlID="FilterText" Name="NAZWISKO_KLIENT" PropertyName="Text" Type="String" />
-        </SelectParameters>
-    </asp:SqlDataSource>
-    <h1>Filtry</h1>
-    <asp:Label class="label" ID="Label4" runat="server" Text="Nazwisko"></asp:Label>
-    <br />
-    <asp:TextBox class="textbox" ID="FilterText" runat="server"></asp:TextBox>
-    <br /><br />
-    <asp:Button class="buttonx" ID="Button1" runat="server" Text="Filtruj" OnClick="Button1_Click" />
-    <br /><br />
-    <asp:Button class="buttonx" ID="Button5" runat="server" Text="Wyczyść filtry" OnClick="Button5_Click" />
-    <br />
     <h1>Dodaj/modyfikuj/ klienta</h1>
     <asp:Label class="label" ID="Label5" runat="server" Text="Imię"></asp:Label>
     <br />
