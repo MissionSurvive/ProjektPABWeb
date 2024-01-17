@@ -15,6 +15,7 @@ namespace CarRentalWeb
         public static int userID;
         public static string name;
         public static string surname;
+        public static string empRental;
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -25,7 +26,7 @@ namespace CarRentalWeb
             SqlConnection connection = new SqlConnection(@"Data Source = X280\SQLEXPRESS; Initial Catalog = CarRentalCWBack; Integrated Security = True");
             if (RadioButton1.Checked)
             {
-                var command = ("SELECT KONTA_PRACOWNIKOW.ID_PRAC, NAZWA_PRACOWNIK, HASLO_PRACOWNIK, PRACOWNICY.IMIE_PRACOWNIK, PRACOWNICY.NAZWISKO_PRACOWNIK, ROLE.ROLA FROM KONTA_PRACOWNIKOW " +
+                var command = ("SELECT KONTA_PRACOWNIKOW.ID_PRAC, NAZWA_PRACOWNIK, HASLO_PRACOWNIK, PRACOWNICY.IMIE_PRACOWNIK, PRACOWNICY.NAZWISKO_PRACOWNIK, ROLE.ROLA, PRACOWNICY.ID_WYPOZYCZALNIA FROM KONTA_PRACOWNIKOW " +
                     "JOIN PRACOWNICY ON KONTA_PRACOWNIKOW.ID_PRAC = PRACOWNICY.ID_PRAC " +
                     "JOIN ROLE ON KONTA_PRACOWNIKOW.ID_ROLA = ROLE.ID_ROLA " +
                     "WHERE NAZWA_PRACOWNIK = @Username AND HASLO_PRACOWNIK = @Password");
@@ -42,10 +43,12 @@ namespace CarRentalWeb
                         object nameObj = dt.Rows[0][3];
                         object surnameObj = dt.Rows[0][4];
                         object roleObj = dt.Rows[0][5];
+                        object rentalobj = dt.Rows[0][6];
                         userID = Convert.ToInt32(idObj);
                         name = nameObj.ToString();
                         surname = surnameObj.ToString();
                         userRoleLogged = roleObj.ToString();
+                        empRental = rentalobj.ToString();
                         connection.Close();
                         Console.WriteLine(userRoleLogged);
                         Response.Redirect("EmployeeView.aspx");

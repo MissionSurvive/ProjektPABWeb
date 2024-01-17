@@ -18,13 +18,13 @@
             <br><br>
             <asp:Label class="user" ID="Label1" runat="server" Text="Label"></asp:Label>   
             <br /><br />
-            <asp:Label ID="id" runat="server" Text="Label" Visible="false"></asp:Label>
+            <asp:Label ID="id" runat="server" Text="0" Visible="False"></asp:Label>
             </div>
 
 <!-- Page content -->
 <div class="content">
   <h1>Moje zamówienia</h1>
-<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:CarRentalCWBackConnectionString %>" SelectCommand="SELECT * FROM [ZAMOWIENIA] WHERE ([ID_KLIENT] = @ID_KLIENT)">
+<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:CarRentalCWBackConnectionString %>" SelectCommand="SELECT ZAMOWIENIA.ID_ZAMOWIENIE, PAKIETY.NAZWA, WYPOZYCZALNIE.MIASTO, PRACOWNICY.IMIE_PRACOWNIK, PRACOWNICY.NAZWISKO_PRACOWNIK, MODELE.NAZWA_MODEL, ZAMOWIENIA.SAMOCHOD_WYDANY, ZAMOWIENIA.ZREALIZOWANE, ZAMOWIENIA.LICZBA_DNI, ZAMOWIENIA.CENA_ZAMOWIENIE, ZAMOWIENIA.DATA_START, ZAMOWIENIA.DATA_KONIEC FROM ZAMOWIENIA INNER JOIN KLIENCI ON ZAMOWIENIA.ID_KLIENT = KLIENCI.ID_KLIENT INNER JOIN PAKIETY ON ZAMOWIENIA.ID_PAKIET = PAKIETY.ID_PAKIET INNER JOIN PRACOWNICY ON ZAMOWIENIA.ID_PRAC = PRACOWNICY.ID_PRAC INNER JOIN SAMOCHODY ON ZAMOWIENIA.ID_SAMOCHOD = SAMOCHODY.ID_SAMOCHOD INNER JOIN MODELE ON SAMOCHODY.ID_MODEL = MODELE.ID_MODEL INNER JOIN WYPOZYCZALNIE ON ZAMOWIENIA.ID_WYPOZYCZALNIA = WYPOZYCZALNIE.ID_WYPOZYCZALNIA AND PRACOWNICY.ID_WYPOZYCZALNIA = WYPOZYCZALNIE.ID_WYPOZYCZALNIA AND SAMOCHODY.ID_WYPOZYCZALNIA = WYPOZYCZALNIE.ID_WYPOZYCZALNIA WHERE (ZAMOWIENIA.ID_KLIENT = @ID_KLIENT)">
     <SelectParameters>
         <asp:ControlParameter ControlID="id" Name="ID_KLIENT" PropertyName="Text" Type="Decimal" />
     </SelectParameters>
@@ -34,11 +34,11 @@
     <Columns>
         <asp:CommandField ShowSelectButton="True" />
         <asp:BoundField DataField="ID_ZAMOWIENIE" HeaderText="ID_ZAMOWIENIE" InsertVisible="False" ReadOnly="True" SortExpression="ID_ZAMOWIENIE" />
-        <asp:BoundField DataField="ID_PAKIET" HeaderText="ID_PAKIET" SortExpression="ID_PAKIET" />
-        <asp:BoundField DataField="ID_WYPOZYCZALNIA" HeaderText="ID_WYPOZYCZALNIA" SortExpression="ID_WYPOZYCZALNIA" />
-        <asp:BoundField DataField="ID_PRAC" HeaderText="ID_PRAC" SortExpression="ID_PRAC" />
-        <asp:BoundField DataField="ID_KLIENT" HeaderText="ID_KLIENT" SortExpression="ID_KLIENT" />
-        <asp:BoundField DataField="ID_SAMOCHOD" HeaderText="ID_SAMOCHOD" SortExpression="ID_SAMOCHOD" />
+        <asp:BoundField DataField="NAZWA" HeaderText="NAZWA" SortExpression="NAZWA" />
+        <asp:BoundField DataField="MIASTO" HeaderText="MIASTO" SortExpression="MIASTO" />
+        <asp:BoundField DataField="IMIE_PRACOWNIK" HeaderText="IMIE_PRACOWNIK" SortExpression="IMIE_PRACOWNIK" />
+        <asp:BoundField DataField="NAZWISKO_PRACOWNIK" HeaderText="NAZWISKO_PRACOWNIK" SortExpression="NAZWISKO_PRACOWNIK" />
+        <asp:BoundField DataField="NAZWA_MODEL" HeaderText="NAZWA_MODEL" SortExpression="NAZWA_MODEL" />
         <asp:CheckBoxField DataField="SAMOCHOD_WYDANY" HeaderText="SAMOCHOD_WYDANY" SortExpression="SAMOCHOD_WYDANY" />
         <asp:CheckBoxField DataField="ZREALIZOWANE" HeaderText="ZREALIZOWANE" SortExpression="ZREALIZOWANE" />
         <asp:BoundField DataField="LICZBA_DNI" HeaderText="LICZBA_DNI" SortExpression="LICZBA_DNI" />
@@ -83,7 +83,7 @@
     <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" />
     <RowStyle BackColor="#E3EAEB" />
 </asp:DetailsView>
-<asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString="<%$ ConnectionStrings:CarRentalCWBackConnectionString %>" SelectCommand="SELECT * FROM [ZAMOWIENIA] WHERE ([ID_ZAMOWIENIE] = @ID_ZAMOWIENIE)">
+<asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString="<%$ ConnectionStrings:CarRentalCWBackConnectionString %>" SelectCommand="SELECT ZAMOWIENIA.ID_ZAMOWIENIE, PAKIETY.NAZWA, WYPOZYCZALNIE.MIASTO, PRACOWNICY.IMIE_PRACOWNIK, PRACOWNICY.NAZWISKO_PRACOWNIK, MODELE.NAZWA_MODEL, MODELE.ROCZNIK, RODZAJE_PALIWA.NAZWA_RODZAJ, RODZAJE_NADWOZIA.NAZWA_NADWOZIE, SAMOCHODY.KOLOR, SAMOCHODY.MOC, SAMOCHODY.SKRZYNIA, SAMOCHODY.MIEJSCA, ZAMOWIENIA.SAMOCHOD_WYDANY, ZAMOWIENIA.ZREALIZOWANE, ZAMOWIENIA.LICZBA_DNI, ZAMOWIENIA.CENA_ZAMOWIENIE, ZAMOWIENIA.DATA_START, ZAMOWIENIA.DATA_KONIEC FROM RODZAJE_NADWOZIA INNER JOIN MODELE ON RODZAJE_NADWOZIA.ID_NADWOZIE = MODELE.ID_NADWOZIE INNER JOIN SAMOCHODY ON MODELE.ID_MODEL = SAMOCHODY.ID_MODEL INNER JOIN ZAMOWIENIA INNER JOIN PAKIETY ON ZAMOWIENIA.ID_PAKIET = PAKIETY.ID_PAKIET INNER JOIN PRACOWNICY ON ZAMOWIENIA.ID_PRAC = PRACOWNICY.ID_PRAC ON SAMOCHODY.ID_SAMOCHOD = ZAMOWIENIA.ID_SAMOCHOD INNER JOIN RODZAJE_PALIWA ON SAMOCHODY.ID_PALIWO = RODZAJE_PALIWA.ID_PALIWO INNER JOIN WYPOZYCZALNIE ON SAMOCHODY.ID_WYPOZYCZALNIA = WYPOZYCZALNIE.ID_WYPOZYCZALNIA AND ZAMOWIENIA.ID_WYPOZYCZALNIA = WYPOZYCZALNIE.ID_WYPOZYCZALNIA AND PRACOWNICY.ID_WYPOZYCZALNIA = WYPOZYCZALNIE.ID_WYPOZYCZALNIA WHERE (ZAMOWIENIA.ID_ZAMOWIENIE = @ID_ZAMOWIENIE)">
     <SelectParameters>
         <asp:ControlParameter ControlID="GridView1" PropertyName="SelectedValue" Name="ID_ZAMOWIENIE" Type="Decimal"></asp:ControlParameter>
     </SelectParameters>

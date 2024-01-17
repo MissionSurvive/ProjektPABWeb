@@ -10,9 +10,9 @@
 <body>
     <form id="form1" runat="server">
         <div class="navbar">
-    <asp:Button class="button" ID="carsButton" runat="server" Text="Samochody" /> 
-    <asp:Button class="button" ID="clientsButton" runat="server" Text="Klenci" />
-    <asp:Button class="button" ID="ordersButton" runat="server" Text="Zamówienia" />
+    <asp:Button class="button" ID="carsButton" runat="server" Text="Samochody" OnClick="carsButton_Click" /> 
+    <asp:Button class="button" ID="clientsButton" runat="server" Text="Klienci" OnClick="clientsButton_Click" />
+    <asp:Button class="button" ID="ordersButton" runat="server" Text="Zamówienia" OnClick="ordersButton_Click" />
     <asp:Button class="button" ID="historyButton" runat="server" Text="Zdarzenia" OnClick="historyButton_Click" /> 
     
             <asp:Button class="logout" ID="logoutButton" runat="server" Text="Wyloguj" OnClick="logoutButton_Click" />

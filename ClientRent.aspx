@@ -46,7 +46,9 @@
     <br>
     <asp:Label class="user" ID="infoLabel" runat="server" Text="Zalogowany jako:"></asp:Label>
     <br><br>
-    <asp:Label class="user" ID="Label1" runat="server" Text="Label"></asp:Label>   
+    <asp:Label class="user" ID="Label1" runat="server" Text="Label"></asp:Label>
+            <br /><br />
+            <asp:Label ID="Label6" runat="server" Text="0" Visible="False"></asp:Label>
     </div>
         <!-- Page content -->
 <div class="content">
@@ -126,10 +128,10 @@
 <br />
 <asp:TextBox class="textbox" id="LengthText" runat="server" OnTextChanged="TextBox1_TextChanged"/>
     <h1>Wybierz pracownika, który wyda pojazd</h1>
-    <asp:DropDownList class="textbox" ID="DropDownList1" runat="server" DataSourceID="SqlDataSource3" DataTextField="NAZWISKO_PRACOWNIK" DataValueField="ID_PRAC"></asp:DropDownList>
-    <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:CarRentalCWBackConnectionString %>" SelectCommand="SELECT [NAZWISKO_PRACOWNIK], [ID_PRAC] FROM [PRACOWNICY] WHERE ([ID_WYPOZYCZALNIA] = @ID_WYPOZYCZALNIA)">
+    <asp:DropDownList class="textbox" ID="DropDownList1" runat="server" DataSourceID="SqlDataSource3" DataTextField="NAZWISKO_PRACOWNIK" DataValueField="ID_PRAC" ></asp:DropDownList>
+    <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:CarRentalCWBackConnectionString %>" SelectCommand="SELECT NAZWISKO_PRACOWNIK,  ID_PRAC FROM PRACOWNICY WHERE (ID_WYPOZYCZALNIA = @ID_WYPOZYCZALNIA)">
         <SelectParameters>
-            <asp:ControlParameter ControlID="GridView1" Name="ID_WYPOZYCZALNIA" PropertyName="SelectedValue" Type="Decimal" />
+            <asp:ControlParameter ControlID="Label6" Name="ID_WYPOZYCZALNIA" PropertyName="Text" Type="Decimal" />
         </SelectParameters>
     </asp:SqlDataSource>
     <br />

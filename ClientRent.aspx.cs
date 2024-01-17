@@ -26,6 +26,8 @@ namespace CarRentalWeb
         int diff;
         decimal weekPrice;
         decimal monthPrice;
+        DateTime startDate;
+        DateTime endDate;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -120,16 +122,27 @@ namespace CarRentalWeb
             string car = row.Cells[18].Text;
             carId = Convert.ToInt32(row.Cells[18].Text);
             rentalId = Convert.ToInt32(row.Cells[19].Text);
+            Label6.Text = rentalId.ToString();
             weekPrice = Convert.ToDecimal(row.Cells[15].Text);
             monthPrice = Convert.ToDecimal(row.Cells[16].Text);
             if(weekPrice == 0)
             {
                 WeekRadio.Visible = false;
             }
+            else
+            {
+                WeekRadio.Visible = true;
+            }
+
             if(monthPrice == 0)
             {
                 MonthRadio.Visible = false;
             }
+            else
+            {
+                MonthRadio.Visible = true;
+            }
+
             if (DayRadio.Checked)
             {
                 sumDays();
@@ -163,9 +176,10 @@ namespace CarRentalWeb
             }
         }
 
+
         protected void rentButton_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ClentRent.aspx");
+            Response.Redirect("ClientRent.aspx");
         }
 
         protected void ordersButton_Click(object sender, EventArgs e)
@@ -183,16 +197,10 @@ namespace CarRentalWeb
                 rentalId = Convert.ToInt32(row.Cells[19].Text);
                 packetId = Convert.ToInt32(row2.Cells[1].Text);
                 packetPrice = Convert.ToDecimal(row2.Cells[4].Text);
+                weekPrice = Convert.ToDecimal(row.Cells[17].Text);
+                monthPrice = Convert.ToDecimal(row.Cells[18].Text);
                 clientId = Login.userID;
-                if (WeekRadio.Checked && weekPrice == 0)
-                {
-                    Label5.Text = "Nie można wypożyczyć wego pojazdu na tygodnie!";
-                }
-                else if (MonthRadio.Checked && monthPrice == 0)
-                {
-                    Label5.Text = "Nie można wypożyczyć wego pojazdu na miesiące!";
-                }
-                else if (packetPrice == -1)
+                if (packetPrice == -1)
                 {
                     Label5.Text = "Nie wybrano pakietu!";
                 }
@@ -207,26 +215,26 @@ namespace CarRentalWeb
                     object idObj = dt.Rows[0][0];
                     idInt = Convert.ToInt32(idObj);
                     connection.Close();
-                    DateTime startDate;
-                    DateTime endDate;
-                    if (DateTime.TryParseExact(DateText.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out startDate))
+
+                    if (DateTime.TryParseExact(DateText.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out startDate))
                     {
-                        endDate = startDate;
+                        endDate = startDate.Date;
+                        length = Convert.ToInt32(LengthText.Text);
                         if (DayRadio.Checked)
                         {
-                            endDate.AddDays(length);
+                            endDate = startDate.AddDays(length);
                         }
                         else if (WeekRadio.Checked)
                         {
-                            endDate.AddDays(length * 7);
+                            endDate = startDate.AddDays(length * 7);
                         }
                         else if (MonthRadio.Checked)
                         {
-                            endDate.AddMonths(length);
+                            endDate = startDate.AddMonths(length);
                         }
                         string startString = startDate.ToString("yyyy-MM-dd HH:mm:ss");
                         string endString = endDate.ToString("yyyy-MM-dd HH:mm:ss");
-                        diff = (endDate - startDate).Days;
+                        
 
                         SqlConnection connection2 = new SqlConnection(@"Data Source = X280\SQLEXPRESS; Initial Catalog = CarRentalCWBack; Integrated Security = True");
                         var command2 = ("SELECT * FROM ZAMOWIENIA WHERE ID_SAMOCHOD = " + carId + " AND DATA_START BETWEEN '" + startString + "' AND '" + endString + "' OR ID_SAMOCHOD = " + carId + " AND DATA_KONIEC BETWEEN '" + startString + "' AND '" + endString + "'");
@@ -243,6 +251,8 @@ namespace CarRentalWeb
                             int empId;
                             if (int.TryParse(DropDownList1.SelectedValue, out empId))
                             {
+                                diff = (endDate - startDate).Days;
+                                sum = Convert.ToDecimal(SumText.Text);
                                 model.ID_PAKIET = packetId;
                                 model.ID_WYPOZYCZALNIA = rentalId;
                                 model.ID_PRAC = empId;
@@ -264,7 +274,7 @@ namespace CarRentalWeb
                                 nextId = idInt + 1;
                                 model2.ID_ZAMOWIENIE = nextId;
                                 model2.ID_RODZAJ_ZDARZENIE = 1;
-                                model2.OPLATA = 0;
+                                model2.OPLATA = sum;
                                 model2.DATA_ZDARZENIE = DateTime.Now;
 
                                 using (CarRentalCWBackEntities1 db = new CarRentalCWBackEntities1())
@@ -275,6 +285,10 @@ namespace CarRentalWeb
                                 Label5.Text = "Złożono zamówienie pomyślnie!";
                             }
                         }
+                    }
+                    else
+                    {
+                        Label5.Text = "Błąd konwersji daty!";
                     }
                 }
             }
