@@ -140,7 +140,7 @@
     <br /><br />
     <asp:Button class="buttony" ID="OrderButton" runat="server" OnClick="OrderButton_Click" Text="Złóż zamówienie" />
     <br />
-    <asp:Label ID="Label5" runat="server" Text="Errory"></asp:Label>
+    <asp:Label ID="Label5" runat="server" Text=" "></asp:Label>
 </div>
     </form>
     <script>

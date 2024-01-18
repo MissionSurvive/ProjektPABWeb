@@ -23,7 +23,7 @@
  <br><br>
  <asp:Label class="user" ID="Label2" runat="server" Text="Label"></asp:Label> 
             <br /><br />
-            <asp:Label ID="Label3" runat="server" Text="Label" Enabled="False"></asp:Label>
+            <asp:Label ID="Label3" runat="server" Text="Label" Enabled="False" Visible="False"></asp:Label>
 </div>
 
 <!-- Page content -->
